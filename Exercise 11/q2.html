@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // (i) Simple Stopwatch
+            let timer;
+            let seconds = 0;
+            const stopwatchDisplay = document.createElement("p");
+            stopwatchDisplay.textContent = "Time: 0s";
+            document.body.appendChild(stopwatchDisplay);
+
+            const startButton = document.createElement("button");
+            startButton.textContent = "Start";
+            document.body.appendChild(startButton);
+
+            const stopButton = document.createElement("button");
+            stopButton.textContent = "Stop";
+            document.body.appendChild(stopButton);
+
+            const resetButton = document.createElement("button");
+            resetButton.textContent = "Reset";
+            document.body.appendChild(resetButton);
+
+            startButton.addEventListener("click", function () {
+                if (!timer) {
+                    timer = setInterval(() => {
+                        seconds++;
+                        stopwatchDisplay.textContent = `Time: ${seconds}s`;
+                    }, 1000);
+                }
+            });
+
+            stopButton.addEventListener("click", function () {
+                clearInterval(timer);
+                timer = null;
+            });
+
+            resetButton.addEventListener("click", function () {
+                clearInterval(timer);
+                timer = null;
+                seconds = 0;
+                stopwatchDisplay.textContent = "Time: 0s";
+            });
+
+            // (ii) Date of Birth Input & Age Calculation
+            document.body.appendChild(document.createElement("br"));
+            document.body.appendChild(document.createElement("br"));
+            const dobInput = document.createElement("input");
+            dobInput.type = "date";
+            document.body.appendChild(dobInput);
+            
+            dobInput.addEventListener("mouseover", function () {
+                if (dobInput.value) {
+                    const birthDate = new Date(dobInput.value);
+                    const age = new Date().getFullYear() - birthDate.getFullYear();
+                    alert(`You are ${age} years old.`);
+                }
+            });
+            
+            // (iii) Character Counter
+            document.body.appendChild(document.createElement("br"));
+            document.body.appendChild(document.createElement("br"));
+            const textarea = document.createElement("textarea");
+            document.body.appendChild(textarea);
+
+            const charCount = document.createElement("p");
+            charCount.textContent = "Character Count: 0";
+            document.body.appendChild(charCount);
+
+            textarea.addEventListener("input", function () {
+                charCount.textContent = `Character Count: ${textarea.value.length}`;
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

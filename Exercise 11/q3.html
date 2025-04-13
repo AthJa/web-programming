@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // (i) Display real-time clock
+            function updateTime() {
+                const timeDisplay = document.getElementById("time");
+                const now = new Date();
+                timeDisplay.textContent = `Time: ${now.toLocaleTimeString()}`;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // (ii) Validate form fields
+            document.getElementById("form").addEventListener("submit", function (event) {
+                event.preventDefault();
+                let valid = true;
+                
+                const name = document.getElementById("name");
+                if (name.value.trim() === "" || name.value.length > 15) {
+                    alert("Name is required and must not exceed 15 characters.");
+                    name.focus();
+                    valid = false;
+                }
+                
+                const address = document.getElementById("address");
+                if (address.value.trim() === "") {
+                    alert("Address is required.");
+                    address.focus();
+                    valid = false;
+                }
+                
+                const zip = document.getElementById("zip");
+                if (!/^[0-9]{5,6}$/.test(zip.value)) {
+                    alert("Zip Code must be numeric and 5-6 digits long.");
+                    zip.focus();
+                    valid = false;
+                }
+                
+                const phone = document.getElementById("phone");
+                if (!/^[0-9]{10}$/.test(phone.value)) {
+                    alert("Phone number must be exactly 10 digits.");
+                    phone.focus();
+                    valid = false;
+                }
+                
+                const email = document.getElementById("email");
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    alert("Invalid email format.");
+                    email.focus();
+                    valid = false;
+                }
+                
+                const password = document.getElementById("password");
+                if (!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@#$%^&+=!]).{8,15}$/.test(password.value)) {
+                    alert("Password must be 8-15 characters long and include a letter, a number, and a special character.");
+                    password.focus();
+                    valid = false;
+                }
+                
+                const pan = document.getElementById("pan");
+                if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.value)) {
+                    alert("PAN number must be 10 characters and follow the format: ABCDE1234F.");
+                    pan.focus();
+                    valid = false;
+                }
+                
+                if (valid) {
+                    alert("Form submitted successfully!");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Test JavaScript Form Validation</h1>
+    <p id="time"></p>
+    <form id="form">
+        <label>Name* <input type="text" id="name"></label><br>
+        <label>Address* <textarea id="address"></textarea></label><br>
+        <label>Zip Code* <input type="text" id="zip"></label><br>
+        <label>Country* <select id="country"><option value="">Please select...</option><option value="USA">USA</option></select></label><br>
+        <label>Gender* <input type="radio" name="gender" value="Male"> Male <input type="radio" name="gender" value="Female"> Female</label><br>
+        <label>Preferences* <input type="checkbox" name="pref" value="Red"> Red <input type="checkbox" name="pref" value="Green"> Green <input type="checkbox" name="pref" value="Blue"> Blue</label><br>
+        <label>Phone* <input type="text" id="phone"></label><br>
+        <label>Email* <input type="text" id="email"></label><br>
+        <label>Password (8-15 characters)* <input type="password" id="password"></label><br>
+        <label>PAN No* <input type="text" id="pan"></label><br>
+        <button type="submit">SEND</button>
+        <button type="reset">CLEAR</button>
+    </form>
+</body>
+</html>

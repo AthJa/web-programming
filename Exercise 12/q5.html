@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        #box1 { background-color: red; top: 50px; left: 50px; z-index: 1; }
+        #box2 { background-color: blue; top: 80px; left: 80px; z-index: 2; }
+        #box3 { background-color: green; top: 110px; left: 110px; z-index: 3; }
+    </style>
+</head>
+<body>
+    <div id="box1" class="box">Box 1</div>
+    <div id="box2" class="box">Box 2</div>
+    <div id="box3" class="box">Box 3</div>
+    
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <div>
+        <label for="element">Select Box:</label>
+        <select id="element">
+            <option value="box1">Box 1</option>
+            <option value="box2">Box 2</option>
+            <option value="box3">Box 3</option>
+        </select>
+        <label for="zIndex">Set Z-Index:</label>
+        <input type="number" id="zIndex" min="0" value="1">
+        <button onclick="changeZIndex()">Apply</button>
+    </div><br>
+    
+
+    <p id="info"></p>
+    
+    <script>
+        function changeZIndex() {
+            let selectedBox = document.getElementById(document.getElementById("element").value);
+            let newZIndex = document.getElementById("zIndex").value;
+            selectedBox.style.zIndex = newZIndex;
+
+            
+            document.querySelectorAll(".box").forEach(box => box.style.border = "none");
+            selectedBox.style.border = "3px solid yellow";
+
+            // Display the new z-index
+            document.getElementById("info").innerText = `Updated: ${selectedBox.id} → z-index ${newZIndex}`;
+        }
+    </script>
+</body>
+</html>
