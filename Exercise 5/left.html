@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23BCE1160</title>
+</head>
+<body>
+<h3>Audio</h3>
+<audio controls>
+<source src="audio.mp3" type="audio/mp3">
+</audio>
+<br>
+<h3>Video</h3>
+<video width="320" height="240" controls>
+<source src="video.mp4" type="video/mp4">
+</video>
+<br>
+<h3>Canvas</h3>
+<canvas id="laptopCanvas" width="400" height="300" style="background:
+linear-gradient(to top, red, purple);"></canvas>
+<script>
+const canvas = document.getElementById('laptopCanvas');
+const ctx = canvas.getContext('2d');
+// Draw laptop base
+ctx.fillStyle = '#D3D3D3'; // Light grey
+ctx.fillRect(100, 220, 200, 20); // Base of the laptop
+// Draw laptop screen
+ctx.fillStyle = '#333'; // Dark grey for the screen
+ctx.fillRect(110, 60, 180, 160);
+// Draw a gradient circle
+const gradient = ctx.createRadialGradient(200, 140, 20, 200, 140, 80);
+gradient.addColorStop(0, 'rgba(255, 223, 0, 1)'); // Bright yellow
+gradient.addColorStop(1, 'rgba(255, 223, 0, 0)'); // Transparent
+yellow
+ctx.fillStyle = gradient;
+ctx.beginPath();
+ctx.arc(200, 140, 80, 0, Math.PI * 2);
+ctx.fill();
+</script>
+</body>
+</html>

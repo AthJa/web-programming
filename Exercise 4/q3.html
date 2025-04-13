@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+</head>
+<body>
+    <h2>Product Feedback Form</h2>
+    <div>
+        <label for="quality">Quality:</label><br>
+        <input type="range" id="quality" min="0" max="10" value="0" oninput="document.getElementById('total').value = parseInt(document.getElementById('quality').value) + parseInt(document.getElementById('value').value) + parseInt(document.getElementById('usability').value)">
+        <br>
+    </div>
+    <div>
+        <label for="value">Value for Money:</label><br>
+        <input type="range" id="value" min="0" max="10" value="0" oninput="document.getElementById('total').value = parseInt(document.getElementById('quality').value) + parseInt(document.getElementById('value').value) + parseInt(document.getElementById('usability').value)">
+        <br>
+    </div>
+    <div>
+        <label for="usability">Usability:</label><br>
+        <input type="range" id="usability" min="0" max="10" value="0" oninput="document.getElementById('total').value = parseInt(document.getElementById('quality').value) + parseInt(document.getElementById('value').value) + parseInt(document.getElementById('usability').value)">
+        <br>
+    </div>
+    <div>
+        <label for="total">Total Feedback Score:</label>
+        <output id="total">15</output>
+    </div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 50%;
+            padding: 20px;
+            background-color: #d1d5b6;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        .product-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .btn {
+            background-color: #a67c52;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #8b5e3c;
+        }
+        .hidden {
+            display: none;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #a67c52;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Grocery Order Form -->
+    <div class="container" id="orderForm">
+        <h2>Grocery Order Form</h2>
+        
+        <form>
+            <table>
+                <tr>
+                    <td>Customer Name:</td>
+                    <td><input type="text" id="name" required></td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td><input type="text" id="phone" required></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" id="email" required></td>
+                </tr>
+            </table>
+            
+            <h3>Products</h3>
+            <table>
+                <tr>
+                    <td><img src="apple.png" class="product-img" alt="Apple"></td>
+                    <td><input type="checkbox" class="product" value="Apple" data-price="10"> Apple ($10 per kg)</td>
+                    <td><input type="number" class="quantity" min="0" placeholder="kg"></td>
+                </tr>
+                <tr>
+                    <td><img src="banana.png" class="product-img" alt="Banana"></td>
+                    <td><input type="checkbox" class="product" value="Banana" data-price="5"> Banana ($5 per kg)</td>
+                    <td><input type="number" class="quantity" min="0" placeholder="kg"></td>
+                </tr>
+                <tr>
+                    <td><img src="avocado.png" class="product-img" alt="Avocado"></td>
+                    <td><input type="checkbox" class="product" value="Avocado" data-price="7"> Avocado ($7 per kg)</td>
+                    <td><input type="number" class="quantity" min="0" placeholder="kg"></td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn" onclick="submitOrder()">SUBMIT</button>
+        </form>
+    </div>
+
+    <!-- Order Receipt -->
+    <div class="container hidden" id="receipt">
+        <h2>Order Receipt</h2>
+        <div id="receiptDetails"></div>
+        <button class="btn" onclick="goBack()">Go Back</button>
+    </div>
+
+    <script>
+        function submitOrder() {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+
+            let products = document.querySelectorAll(".product");
+            let quantities = document.querySelectorAll(".quantity");
+
+            let orderDetails = [];
+
+            products.forEach((product, index) => {
+                if (product.checked) {
+                    let quantity = quantities[index].value;
+                    let price = product.getAttribute("data-price");
+                    let totalCost = quantity * price;
+                    orderDetails.push({
+                        name: product.value,
+                        quantity: quantity,
+                        price: price,
+                        total: totalCost
+                    });
+                }
+            });
+
+            if (orderDetails.length === 0) {
+                alert("Please select at least one product.");
+                return;
+            }
+
+            let orderData = {
+                customer: { name, phone, email },
+                items: orderDetails
+            };
+
+            localStorage.setItem("orderReceipt", JSON.stringify(orderData));
+
+            displayReceipt();
+        }
+
+        function displayReceipt() {
+            let orderData = JSON.parse(localStorage.getItem("orderReceipt"));
+
+            if (orderData) {
+                let receiptHTML = `
+                    <h3>Customer Details</h3>
+                    <p><strong>Name:</strong> ${orderData.customer.name}</p>
+                    <p><strong>Phone:</strong> ${orderData.customer.phone}</p>
+                    <p><strong>Email:</strong> ${orderData.customer.email}</p>
+                    
+                    <h3>Order Summary</h3>
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity (kg)</th>
+                            <th>Price per kg ($)</th>
+                            <th>Total ($)</th>
+                        </tr>
+                `;
+
+                let totalAmount = 0;
+                orderData.items.forEach(item => {
+                    receiptHTML += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.price}</td>
+                            <td>${item.total}</td>
+                        </tr>
+                    `;
+                    totalAmount += parseFloat(item.total);
+                });
+
+                receiptHTML += `
+                    <tr>
+                        <td colspan="3"><strong>Grand Total</strong></td>
+                        <td><strong>$${totalAmount.toFixed(2)}</strong></td>
+                    </tr>
+                    </table>
+                `;
+
+                document.getElementById("receiptDetails").innerHTML = receiptHTML;
+            }
+
+            document.getElementById("orderForm").classList.add("hidden");
+            document.getElementById("receipt").classList.remove("hidden");
+        }
+
+        function goBack() {
+            document.getElementById("receipt").classList.add("hidden");
+            document.getElementById("orderForm").classList.remove("hidden");
+        }
+    </script>
+
+</body>
+</html>

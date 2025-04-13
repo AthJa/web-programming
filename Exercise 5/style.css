@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  nav a {
+    margin-right: 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .try-free {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .hero-section, .how-it-works-section {
+    padding: 100px 50px;
+  }
+  
+  .hero-content h1 {
+    font-size: 48px;
+  }
+  
+  .hero-content p {
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  
+  .cta-buttons button {
+    padding: 10px 20px;
+    background-color: gray;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .cta-buttons a {
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .stats {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .stats img {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .hero-images img {
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .social-icons {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+  }
+  
+  .social-icons img {
+    display: block;
+    margin-bottom: 10px;
+    width: 30px;
+  }
+  
+  .how-it-works-section h2 {
+    font-size: 18px;
+    color: orange;
+  }
+  
+  .how-it-works-section h3 {
+    font-size: 36px;
+  }
+  
+  .step {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .step-info h1 {
+    font-size: 64px;
+    color: gray;
+  }
+  
+  .step-info h4 {
+    font-size: 24px;
+  }
+  
+  .step-info p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .step-image img {
+    width: 300px;
+    margin-left: 50px;
+  }
+  

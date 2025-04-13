@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+    <style>
+        .myphto {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #123456;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+        }
+
+        @keyframes titleAnimation {
+            0% {
+                color: red;
+                font-size: 16px;
+            }
+            25% {
+                color: yellow;
+                font-size: 18px;
+            }
+            50% {
+                color: lightgreen;
+                font-size: 20px;
+            }
+            75% {
+                color: lightblue;
+                font-size: 18px;
+            }
+            100% {
+                color: violet; 
+                font-size: 16px;
+            }
+        }
+
+        .title {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            animation: titleAnimation 3s infinite; 
+        }
+    </style>
+</head>
+<body>
+    
+    <img src="singer.jpg" alt="My Favorite Singer" class="myphto">
+
+    <p class="title">Favorite singer</p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+body {
+    background-image: url(Screenshot_20-1-2025_18114_www.bing.com.jpeg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+h2 {
+    background-image: linear-gradient(to left, blue, green,  orange, red);
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+div {
+    color: blue;
+    column-count: 2;
+    column-rule-color: black;
+    column-width: auto;
+    line-height: 30px;
+}
+.ball {
+    fill: red;
+    stroke: black;
+    stroke-width: 2;
+}
+.dog {
+    fill: #8B4513;
+}
+.dog-eye {
+    fill: white;
+}
+.dog-pupil {
+    fill: black;
+}
+.dog-tongue {
+    fill: #FF6347;
+}
+@keyframes play {
+    0% {
+        transform: translate(0, 0) rotate(0) scale(1);
+    }
+    25% {
+        transform: translate(50px, 50px) rotate(45deg) scale(1.2);
+    }
+    50% {
+        transform: translate(100px, 0) rotate(90deg) scale(1);
+    }
+    75% {
+        transform: translate(50px, -50px) rotate(135deg) scale(0.8);
+    }
+    100% {
+        transform: translate(0, 0) rotate(180deg) scale(1);
+    }
+}
+#ball-group {
+    animation: play 2s ease-in-out infinite;
+}

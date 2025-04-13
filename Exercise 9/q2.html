@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1160</title>
+</head>
+<body>
+    <h2>Airline Reservation System</h2>
+    <button onclick="reserveSeat()">Reserve a Seat</button>
+    <div id="boarding-pass"></div>
+
+    <script>
+        const seats = Array(10).fill(0);
+
+        function assignSeat(choice, passengerName) {
+            let seatAssigned = -1;
+            if (choice === 1) {
+                seatAssigned = seats.findIndex((seat, index) => index < 5 && seat === 0);
+                if (seatAssigned === -1) {
+                    if (confirm("First-class is full. Would you like an economy seat?")) {
+                        return assignSeat(2, passengerName);
+                    } else {
+                        alert("Please try later.");
+                        return;
+                    }
+                }
+            } else if (choice === 2) {
+                seatAssigned = seats.findIndex((seat, index) => index >= 5 && seat === 0);
+                if (seatAssigned === -1) {
+                    if (confirm("Economy is full. Would you like a first-class seat?")) {
+                        return assignSeat(1, passengerName);
+                    } else {
+                        alert("please try later.");
+                        return;
+                    }
+                }
+            }
+            
+            if (seatAssigned !== -1) {
+                seats[seatAssigned] = 1;
+                let seatClass = seatAssigned < 5 ? "First-Class" : "Economy";
+                document.getElementById("boarding-pass").innerHTML = 
+                    `<p><strong>Boarding Pass:</strong><br>Name: ${passengerName}<br>Seat Number: ${seatAssigned + 1}<br>Class: ${seatClass}</p>`;
+            }
+        }
+
+        function reserveSeat() {
+            const passengerName = prompt("Enter passenger name:");
+            const choice = parseInt(prompt("Enter 1 for First-Class or 2 for Economy:"));
+            assignSeat(choice, passengerName);
+        }
+    </script>
+</body>
+</html>
